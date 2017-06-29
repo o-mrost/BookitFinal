@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!DOCTYPE html>
+
+<!-- ===========================================================================
+ admin.xhtml - Client Seite admin
+ ============================================================================ -->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+
+<h:body>
+	<ui:composition template="/masterLayout.xhtml">
+
+		<ui:define name="title">Hallo</ui:define>
+
+		<ui:define name="content">
+
+			<h:form rendered="#{lbn.adminLoggedIn}">
+
+				<p:growl id="messages" />
+
+				<p:menubar>
+					<p:submenu label="#{res.keyTermin}" icon="ui-icon-contact">
+						<p:submenu label="#{res.keyTerminBuchen}" icon="ui-icon-contact">
+							<p:menuitem value="#{res.keyServiceListe}" url="#" />
+							<p:menuitem value="#{res.keyServiceSuche}" url="#"
+								icon="ui-icon-search" />
+						</p:submenu>
+						<p:menuitem value="#{res.keyTerminÄndern}" icon="ui-icon-pencil"
+							url="#" />
+						<p:separator />
+					</p:submenu>
+
+					<p:submenu label="#{res.keyBuchungsübersicht}"
+						icon="ui-icon-pencil">
+						<p:menuitem value="Admin view" url="timeline.xhtml" />
+						<p:menuitem value="#{res.keyAktuelleTermine}" url="calendar.xhtml" />
+					</p:submenu>
+
+					<p:submenu label="#{res.keyKontakt}" icon="ui-icon-help">
+						<p:menuitem value="#{res.keyAnfahrt}" url="#" />
+						<p:menuitem value="#{res.keyKontaktdetails}" url="contact.xhtml" />
+
+					</p:submenu>
+
+					<f:facet name="options">
+						<p:inputText style="margin-right:12px" placeholder="Suchen" />
+						<p:commandButton type="button" value="Logout"
+							icon="ui-icon-extlink" />
+					</f:facet>
+				</p:menubar>
+
+				<h3>Hallo Administrator</h3>
+				
+				Hello, #{lbn.name}
+				<p />
+
+				<p>
+					Heute ist
+					<h:outputText value="#{lbn.date}">
+						<f:convertDateTime locale="de_DE" dateStyle="full" type="both" />
+					</h:outputText>
+				</p>
+
+				<p>
+					<h:commandButton value="Zurück" action="login.xhtml" />
+				</p>
+
+				<p:dashboard id="board" model="#{db.model}">
+					<p:ajax event="reorder" listener="#{db.handleReorder}" />
+
+					<p:panel id="services" header="Verfügbare Termine">
+						<h:outputText value="Hier stehen alle wählbaren Termin" />
+						<p:dataTable var="car" value="#{dtBasicView.cars}">
+							<p:column headerText="Id">
+								<h:outputText value="#{car.id}" />
+							</p:column>
+
+							<p:column headerText="Year">
+								<h:outputText value="#{car.year}" />
+							</p:column>
+
+							<p:column headerText="Brand">
+								<h:outputText value="#{car.brand}" />
+							</p:column>
+
+							<p:column headerText="Color">
+								<h:outputText value="#{car.color}" />
+							</p:column>
+						</p:dataTable>
+					</p:panel>
+
+					<p:panel id="about" header="Über uns">
+						<h:outputText value="Wir sind die allercoooolsten" />
+					</p:panel>
+
+					<p:panel id="news" header="News">
+						<h:outputText value="Hier stehen alle News" />
+					</p:panel>
+				</p:dashboard>
+
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

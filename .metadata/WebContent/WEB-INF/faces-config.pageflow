@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14987572367890" configfile="/BookitFinal/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="loginPage.xhtml" x="122" y="370" id="pf14987579569381" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14987579569382 pf14987579569383" path="/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="userPage.xhtml" x="338" y="178" id="pf14987579569384" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf14987579569382" path="/userPage.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="adminPage.xhtml" x="338" y="562" id="pf14987579569385" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf14987579569383" path="/adminPage.xhtml"/>
+  <links id="pf14987579569382" target="pf14987579569384" source="pf14987579569381" outcome="user"/>
+  <links id="pf14987579569383" target="pf14987579569385" source="pf14987579569381" outcome="admin" redirect="true"/>
+</pageflow:Pageflow>
